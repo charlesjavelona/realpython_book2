@@ -1,0 +1,15 @@
+import sqlite3
+
+with sqlite3.connect("blog.db") as connection:
+
+	conn = connection.cursor()
+	#conn.execute("""CREATE TABLE posts
+	#			(title TEXT, post TEXT)
+	#			 """)
+
+	#Insert dummy data into the table
+
+	conn.execute('INSERT INTO posts VALUES("WELL", "I\'m well.")')
+	conn.execute('INSERT INTO posts VALUES("GOOD", "I\'m good.")')
+	conn.execute('INSERT INTO posts VALUES("EXCEL", "I\'m excelling.")')
+	conn.execute('INSERT INTO posts VALUES("OKAY", "I\'m okay.")')

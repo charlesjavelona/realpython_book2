@@ -1,0 +1,8 @@
+FILE PURPOSES:
+
+blog.py - Acts as the application handler
+static - Holds folders and files for css, images, javascript
+templates - Holds html files
+
+
+The application will work be framed in the client-server model
