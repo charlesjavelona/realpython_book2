@@ -96,6 +96,7 @@ def tasks():
 @app.route('/add/', methods=['GET', 'POST'])
 @login_required
 def new_task():
+	error = None
 	form = AddTaskForm(request.form)
 	if request.method == "POST":
 		if form.validate_on_submit():
@@ -112,9 +113,8 @@ def new_task():
 			flash('New entry was successfull.')
 			return redirect(url_for('tasks'))
 		else:
-			flash('All fields are required.')
-			return redirect(url_for('tasks'))
-	return return_template('taks.html', form=form)
+			return render_template('tasks.html', form=form, error=error)
+	return render_template('tasks.html', form=form, error=error)
 
 
 @app.route('/complete/<int:task_id>/')
@@ -139,3 +139,9 @@ def delete_entry(task_id):
 	db.session.commit()
 	flash('The task was marked as deleted.')
 	return redirect(url_for('tasks'))
+
+
+def flash_errors(form):
+	for field, errors in form.errors.items():
+		for error in errors:
+			flash(u"Error in the %s field - %s" (getattr(form. field).label.text, error), 'error')
